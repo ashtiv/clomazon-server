@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const stripe = require("stripe")(
-    "sk_test_51K7FUDSImPApRlyOnRF0AvArN8mPlLw8Jj4woxKzrPVhsGTp3K0oXVCBSYWqTsQAZZMhP7C7E20Dpdq6DHuNTB6K00NT5cdqdt"
+    "your stripe id"
 );
 
 // API
@@ -18,7 +18,7 @@ app.get("/", (request, response) => response.status(200).send("hello world"));
 
 app.post("/payments/create", async (request, response) => {
     const total = parseInt(request.query.total);
-    
+
     console.log("Payment Request Recieved BOOM!!! for this amount >>> ", total);
 
     const paymentIntent = await stripe.paymentIntents.create({
@@ -36,6 +36,6 @@ app.post("/payments/create", async (request, response) => {
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
-  console.log('Press Ctrl+C to quit.');
+    console.log(`App listening on port ${PORT}`);
+    console.log('Press Ctrl+C to quit.');
 });
